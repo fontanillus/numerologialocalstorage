@@ -1,14 +1,16 @@
 /* Estructura general */
-body {
-    width: 90%;
-    margin: 0 auto;
+   body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    max-width: 100vw;
+    overflow-x: hidden; /* 🔑 Esto evita que se desborde */
     height: auto;
     background-image: var(--imagen-fondo);
     background-repeat: no-repeat;
     background-size: cover;
     color: var(--color-texto);
     font-family: var(--fuente-principal);
-
 }
 
 .estilo {
@@ -57,11 +59,9 @@ body {
 }
 
 .segundo-header {
-    display: flex;
-    align-items: center;
-    /* Centra verticalmente */
-    gap: 20rem;
-    /* Espaciado entre los elementos */
+    gap: 2rem;
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
 
 
@@ -305,82 +305,93 @@ select {
 
 }
 
+/* Reset y base global */
 *,
 *::before,
 *::after {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
-/* ------------------------------
-   Media Queries (Responsive)
-------------------------------- */
-
-/* Tablets (≤768px) */
-@media (max-width: 768px) {
-    nav ul li {
-        margin-right: 15px;
-    }
-
-    aside {
-        width: 80%;
-        flex-shrink: 1;
-        margin-bottom: 1rem;
-    }
+/* Cuerpo y estructura principal */
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: auto;
+    overflow-x: hidden; /* Evitar desbordamiento */
+    background-image: var(--imagen-fondo);
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-family: var(--fuente-principal);
 }
 
-/* Móviles (≤480px) */
+/* Estructura general */
+header,
+main,
+footer {
+    width: 100%;
+    padding: 0 2rem;
+}
+
+/* Contenido principal y flexbox */
+.contenido-primero {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.main-content {
+    flex: 1;
+    padding: 1rem;
+}
+
+/* Galería */
+.imagenes-numerologia {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    justify-items: center;
+}
+
+.imagenes-numerologia img {
+    width: 100%;
+    max-width: 180px;
+    height: auto;
+    object-fit: cover;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    background-color: var(--color-principal);
+    color: var(--color-texto);
+    padding: 1rem;
+}
+
+/* Media Queries */
+
+/* Móviles pequeños (≤480px) */
 @media (max-width: 480px) {
     body {
-        width: 100%;
-        padding: 0 1rem;
-        background-size: contain;
-    }
-
-    header,
-    nav,
-    footer,
-    main {
-        padding: 0.5rem 3%;
-        gap: 0.5rem;
+        padding: 0 1rem; /* Ajustar relleno */
     }
 
     .contenido-primero {
-        flex-direction: column;
-        gap: 1rem;
-    }
-
-    aside {
-        width: 100%;
-        flex-shrink: 1;
-        margin-bottom: 1rem;
-        overflow-x: auto;
+        flex-direction: column; /* Cambiar a columna en pantallas pequeñas */
+        gap: 1rem; /* Espacio entre elementos */
     }
 
     .main-content {
-        flex: 1 1 100%;
-        padding: 0.5rem 0;
-    }
-
-    nav ul {
-        flex-direction: column;
-        gap: 10px;
-        padding: 0;
-    }
-
-    nav ul li a {
-        margin: 0;
-        color: var(--color-texto);
-        text-decoration: none;
-
+        padding: 1rem 0; /* Relleno reducido */
     }
 
     .imagenes-numerologia {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 10px;
-    }
-
-    figure p {
-        font-size: xx-small;
+        grid-template-columns: 1fr; /* 1 imagen por fila */
+        gap: 1rem;
     }
 
     .flex-centered-box {
@@ -389,14 +400,216 @@ select {
         gap: 1rem;
     }
 
-    nav ul li a:hover {
-        color: var(--color-secundario);
+    nav ul {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        align-items: center;
     }
 
-    #numerologia,
-    aside select,
-    select {
-        width: 100%;
-        max-width: 100%;
+    nav ul li {
+        margin-right: 0;
     }
+}
+
+/* Tabletas (≤768px) */
+@media (max-width: 768px) {
+    .contenido-primero {
+        flex-direction: column; /* En pantallas más pequeñas */
+        gap: 1.5rem;
+    }
+
+    aside {
+        width: 100%;
+        margin-bottom: 1rem;
+        flex-shrink: 1;
+    }
+
+    .main-content {
+        flex: 1 1 100%;
+        padding: 1rem 0;
+    }
+
+    .imagenes-numerologia {
+        grid-template-columns: repeat(2, 1fr); /* 2 imágenes por fila */
+        gap: 1.5rem;
+    }
+
+    figure p {
+        font-size: 0.75rem;
+    }
+
+    nav ul {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    nav ul li {
+        margin-right: 1rem;
+    }
+}
+
+/* Tabletas grandes (≤1024px) */
+@media (max-width: 1024px) {
+    .contenido-primero {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    aside {
+        width: 100%;
+    }
+
+    .imagenes-numerologia {
+        grid-template-columns: repeat(3, 1fr); /* 3 imágenes por fila */
+        gap: 1.5rem;
+    }
+
+    figure p {
+        font-size: 0.85rem; /* Aumentar tamaño de texto */
+    }
+
+    .main-content {
+        flex: 1 1 100%;
+    }
+
+    nav ul {
+        justify-content: space-between;
+    }
+}
+
+/* Pantallas grandes (≥1025px) */
+@media (min-width: 1025px) {
+    .contenido-primero {
+        gap: 2rem; /* Espacio mayor entre secciones */
+    }
+
+    .imagenes-numerologia {
+        grid-template-columns: repeat(3, 1fr); /* 3 imágenes por fila */
+        gap: 2rem;
+    }
+
+    figure p {
+        font-size: 0.95rem; /* Ajuste en el tamaño del texto */
+    }
+
+    .main-content {
+        flex: 1;
+    }
+}
+/* Estilos generales para pantallas pequeñas (≤375px) */
+@media (max-width: 375px) {
+  body {
+    width: 100%;
+    padding: 0 1rem;
+    background-size: cover;
+  }
+
+  .contenido-primero {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  aside {
+    width: 100%;
+    min-width: unset;
+    max-width: 100%;
+    margin-bottom: 1rem;
+    overflow-x: auto;
+  }
+
+  .main-content {
+    max-width: 100%;
+    padding: 0.5rem 0;
+  }
+
+  nav ul {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  nav ul li {
+    margin-right: 0;
+  }
+
+  .imagenes-numerologia {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .flex-centered-box {
+    flex-direction: column;
+    padding: 1rem 5%;
+  }
+
+  #numerologia,
+  select {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  figure p,
+  figcaption {
+    font-size: 0.7rem;
+  }
+
+  footer {
+    font-size: 0.75rem;
+  }
+}
+
+/* Estilos extra para orientación vertical (portrait) */
+@media (max-width: 375px) and (orientation: portrait) {
+  .header-principal h1 {
+    font-size: 2rem;
+  }
+
+  .header-linea h2,
+  .header-linea h3 {
+    font-size: 1rem;
+  }
+
+  .imagenes-numerologia img {
+    width: 100px;
+    height: 100px;
+  }
+}
+
+/* Estilos extra para orientación horizontal (landscape) */
+@media (max-width: 667px) and (orientation: landscape) {
+  .contenido-primero {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  aside {
+    width: 45%;
+    max-width: 300px;
+  }
+
+  .main-content {
+    max-width: 50%;
+  }
+
+  .imagenes-numerologia {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .flex-centered-box {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+}
+@media (max-width: 480px) {
+  .header-principal h1 {
+    font-size: 1.4rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .header-principal h1 {
+    font-size: 1.6rem;
+  }
 }
